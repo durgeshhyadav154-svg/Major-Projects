@@ -3,14 +3,12 @@ const rootDir=require('../util/pathUtil')
 const hostRouter=express.Router();
 const path=require('path');
 
+const homeController=require('../controllers/homes');
 
-hostRouter.get('/add-home',(req,res,next)=>{
-  res.sendFile(path.join(rootDir,'../','Airbnb','views','addHome.html'));
-});
 
-hostRouter.post('/add-home',(req,res,next)=>{
-    console.log(req.body);
-  res.sendFile(path.join(rootDir,'../','Airbnb','views','homeAdd.html'));
-});
+hostRouter.get('/add-home',homeController.getAddHome);
 
-module.exports=hostRouter;
+
+hostRouter.post('/add-home',homeController.postAddHome);
+
+exports.hostRouter=hostRouter;
